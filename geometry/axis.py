@@ -1,10 +1,10 @@
-import drawers
+import drawer.basic
 import glhelpers
 
 
 class AxisFactory(object):
     def create(self, ortho_radius=200):
-        return Axis(ortho_radius, ArrayDrawer())
+        return Axis(ortho_radius, drawer.basic.ArrayDrawer())
 
 
 class Axis(object):

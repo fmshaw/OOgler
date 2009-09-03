@@ -29,14 +29,13 @@ class SceneRoot(object):
         SetupHelper().opengl_init()
 
         self.nodes.append(node.basic.TestingNode())
-        import pdb; pdb.set_trace()
 
     def main_loop(self):
         SetupHelper().opengl_init()
         while not self.win.has_exit:
             self.win.dispatch_events()
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        self.cam.apply()
-        for node in self.nodes:
-            node.draw()
-        self.win.flip()
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+            self.cam.apply()
+            for node in self.nodes:
+                node.draw()
+            self.win.flip()
