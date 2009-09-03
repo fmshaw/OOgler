@@ -8,6 +8,13 @@ Pyglet provides OpenGL bindings for Python, I'm hoping to add a
 scene graph layer on top. The idea being to make it easy to represent an
 object system as a 3D environment.
 
+Prerequisites
+-------------
+
+Pyglet for the OpenGL stuff and windowing
+Zope for the component system
+Python 2.6.2 (well that's the one I'm using)
+
 Thanks
 ------
 

@@ -1,3 +1,4 @@
+import zope.component
 from pyglet import window
 from pyglet.gl import *
 import geometry.axis
@@ -15,6 +16,7 @@ class SceneRoot(object):
     nodes = []
 
     def __init__(self):
+        components = zope.component.registry.Components('OOgler')
         axis_factory = geometry.axis.AxisFactory()
         axis = axis_factory.create()
         self.nodes.append(node.basic.ObjectNode(axis))

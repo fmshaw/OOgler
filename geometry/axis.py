@@ -1,13 +1,25 @@
+import zope.interface
+import zope.component
+import geometry.interfaces
 import drawer.basic
 import glhelpers
 
 
 class AxisFactory(object):
-    def create(self, ortho_radius=200):
-        return Axis(ortho_radius, drawer.basic.ArrayDrawer())
+    zope.interface.implements(geometry.interfaces.IGeometryFactory)
+    def create(self, args={}):
+        ortho_radius = 200
+        if 'ortho_radius' in args:
+            ortho_radius = args['ortho_radius']
+        components = zope.component.registry.Components('OOgler')
+        array_drawer = components.getUtility(
+            drawer.interfaces.IArrayDrawer,
+            name='ArrayDrawer')
+        return Axis(ortho_radius, array_drawer)
 
 
 class Axis(object):
+    zope.interface.implements(geometry.interfaces.IGeometry)
     vertices = None
     colours = None
     drawer = None

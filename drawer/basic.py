@@ -1,8 +1,12 @@
+import drawer.interfaces
+import zope.interface
+import zope.component
 from pyglet.gl import *
 
 
 class ArrayDrawer(object):
-    def draw(self, scene_object, mode=GL_LINES):
+    zope.interface.implements(drawer.interfaces.IArrayDrawer)
+    def draw(self, scene_object):
         glEnableClientState(GL_VERTEX_ARRAY)
         glEnableClientState(GL_COLOR_ARRAY)
         glColorPointer(4, GL_FLOAT, 0, scene_object.colours)
@@ -11,3 +15,6 @@ class ArrayDrawer(object):
         glDisableClientState(GL_VERTEX_ARRAY)
         glDisableClientState(GL_COLOR_ARRAY)
 
+components = zope.component.registry.Components('OOgler')
+components.registerUtility(factory=ArrayDrawer, name='ArrayDrawer')
+del components

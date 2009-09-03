@@ -1,7 +1,10 @@
 from pyglet.gl import *
-
+import node.interfaces
+import zope.interface
 
 class TestingNode(object):
+    zope.interface.implements(node.interfaces.IDrawnNode)
+
     def draw(self):
         # Draw a line across the frame buffer
         # Bottom left to top right
@@ -19,6 +22,7 @@ class TestingNode(object):
 
 
 class ObjectNode(object):
+    zope.interface.implements(node.interfaces.IDrawnNode)
     object_to_draw = None
 
     def __init__(self, object_to_draw):
