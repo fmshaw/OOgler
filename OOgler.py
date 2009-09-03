@@ -20,6 +20,7 @@ class TestingLineDrawer(object):
         glVertex3f(0,0,0)
         glColor4f(0,0,0,0)
         glVertex3f(320,240,0)
+
         glColor4f(0,0,0,0)
         glVertex3f(320,240,0)
         glColor4f(1,1,1,1)
@@ -67,7 +68,7 @@ class Camera(object):
         if symbol==key.F1:
             self.viewport.mode=1
             self.default()
-            print "Projection: Pyglet default"
+            print "Projection: Default"
         elif symbol==key.F2:
             print "Projection: 3D Isometric"
             self.viewport.mode=2

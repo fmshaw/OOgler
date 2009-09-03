@@ -1,0 +1,8 @@
+OOgler - Pyglet scene graph
+
+Pyglet provides OpenGL bindings for Python, I'm hoping to add a
+scene graph layer on top. The idea being to make it easy to represent an
+object system as a 3D environment.
+
+I would like to thank Txema Vicente for their very helpful newbie code:
+http://groups.google.com/group/pyglet-users/browse_thread/thread/0a2ecebae56f0c58
