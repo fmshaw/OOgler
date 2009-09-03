@@ -1,8 +1,31 @@
 OOgler - Pyglet scene graph
+===========================
+
+Introduction
+------------
 
 Pyglet provides OpenGL bindings for Python, I'm hoping to add a
 scene graph layer on top. The idea being to make it easy to represent an
 object system as a 3D environment.
 
+Thanks
+------
+
 I would like to thank Txema Vicente for their very helpful newbie code:
 http://groups.google.com/group/pyglet-users/browse_thread/thread/0a2ecebae56f0c58
+
+Licensing
+---------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
