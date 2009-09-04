@@ -1,0 +1,79 @@
+Basic nodes
+===========
+
+We should be able to import this modules
+
+>>> import node.basic
+
+Testing node
+------------
+
+The testing node is an easy way to patch into the rendering.
+
+>>> import node.basic
+>>> testing_node = node.basic.TestingNode()
+>>> testing_node # doctest: +ELLIPSIS
+<node.basic.TestingNode object at 0x...>
+
+Object node
+-----------
+
+This node wraps an drawable object. The wrapped object will be drawn
+with depth testing active.
+
+We create a dummy drawer:
+
+>>> class DummyDrawer(object):
+...   def draw(self, objectToDraw):
+...     print objectToDraw.dummy_value
+
+We create a dummy object to draw:
+
+>>> class DummyObjectToDraw(object):
+...   dummy_value = 'Draw me'
+...   drawer = DummyDrawer()
+
+Now we create an object node with the dummy
+
+>>> object_node = node.basic.ObjectNode(DummyObjectToDraw())
+>>> object_node # doctest: +ELLIPSIS
+<node.basic.ObjectNode object at 0x...>
+
+Great and to make sure our drawer logic is working:
+
+>>> object_node.draw()
+Draw me
+
+Node factories
+--------------
+
+A generic factory that takes a parameters object and a class and makes
+instances of the class from the parameters.
+
+First we create a dummy class to test with:
+
+>>> class DummyNode(object):
+...   parameter = None
+...   def __init__(self, para):
+...     self.parameter = para
+
+We quickly check the behaviour of the class:
+
+>>> n = DummyNode('A string')
+>>> print n.parameter
+A string
+
+Now we need a set of parameters for this example we use a string.
+
+>>> para = 'A distinct string'
+
+Then we create a factory with the parameters:
+
+>>> node_factory = node.basic.NodeFactory(DummyNode, para)
+>>> created_node = node_factory.create()
+>>> print created_node.parameter
+A distinct string
+
+Woo hoo, it works. These kinds of factories will be registered as
+componentins in the modules that define them.
+

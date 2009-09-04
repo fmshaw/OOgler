@@ -33,3 +33,14 @@ class ObjectNode(object):
         self.object_to_draw.drawer.draw(self.object_to_draw)
         glDisable(GL_DEPTH_TEST)
 
+class NodeFactory(object):
+    class_object = None
+    parameters = None
+
+    def __init__(self, class_object, parameters):
+        self.class_object = class_object
+        self.parameters = parameters
+
+    def create(self):
+        return self.class_object(self.parameters)
+
