@@ -15,6 +15,6 @@ class ArrayDrawer(object):
         glDisableClientState(GL_VERTEX_ARRAY)
         glDisableClientState(GL_COLOR_ARRAY)
 
-components = zope.component.registry.Components('OOgler')
-components.registerUtility(factory=ArrayDrawer, name='ArrayDrawer')
-del components
+gsm = zope.component.getGlobalSiteManager()
+gsm.registerUtility(factory=ArrayDrawer, name='ArrayDrawer')
+del gsm

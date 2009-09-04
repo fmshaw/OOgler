@@ -11,8 +11,8 @@ class AxisFactory(object):
         ortho_radius = 200
         if 'ortho_radius' in args:
             ortho_radius = args['ortho_radius']
-        components = zope.component.registry.Components('OOgler')
-        array_drawer = components.getUtility(
+        gsm = zope.component.getGlobalSiteManager()
+        array_drawer = gsm.getUtility(
             drawer.interfaces.IArrayDrawer,
             name='ArrayDrawer')
         return Axis(ortho_radius, array_drawer)
