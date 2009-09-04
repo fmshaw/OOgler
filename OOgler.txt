@@ -1,0 +1,13 @@
+OOgler
+======
+
+Scene root
+----------
+
+Here we are just testing that the scene root can be instansiated.
+
+>>> import scene.root
+>>> root = scene.root.SceneRoot()
+>>> root #doctest:+ELLIPSIS
+<scene.root.SceneRoot object at 0x...>
+

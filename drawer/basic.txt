@@ -1,0 +1,15 @@
+Basic drawers
+=============
+
+Component registry
+------------------
+
+We check the component is registered with the global site manager
+
+>>> import zope.component
+>>> import drawer.interfaces
+>>> gsm = zope.component.getGlobalSiteManager()
+>>> util = gsm.getUtility(drawer.interfaces.IArrayDrawer,
+...                       name='ArrayDrawer')
+>>> util #doctest:+ELLIPSIS
+<drawer.basic.ArrayDrawer object at 0x...>

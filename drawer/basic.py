@@ -1,3 +1,6 @@
+"""
+This file contains the helpers for rendering objects.
+"""
 import drawer.interfaces
 import zope.interface
 import zope.component
