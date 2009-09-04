@@ -1,0 +1,52 @@
+Axis geometry
+=============
+
+This class creates a simple object with a plane on each 3D plane of (XY,
+XZ, YZ) There is also a factory that is registered as a component.
+
+Axis object
+-----------
+
+Can we create one from the class?
+
+>>> import geometry.axis
+>>> axis = geometry.axis.Axis(10, None)
+>>> axis # doctest: +ELLIPSIS
+<geometry.axis.Axis object at 0x...>
+
+Are the vertices correct?
+
+>>> axis.vertices # doctest: +ELLIPSIS
+<glhelpers.c_float_Array_36 object at 0x...>
+
+Axis factory
+------------
+
+Is the factory working?
+
+>>> factory = geometry.axis.AxisFactory()
+>>> factory # doctest: +ELLIPSIS
+<geometry.axis.AxisFactory object at 0x...>
+
+Can we make an axis?
+
+>>> created_axis = factory.create()
+>>> created_axis # doctest: +ELLIPSIS
+<geometry.axis.Axis object at 0x...>
+
+Axis component
+--------------
+
+Lookup the component.
+
+>>> import zope.component
+>>> import geometry.interfaces
+>>> gsm = zope.component.getGlobalSiteManager()
+>>> util = gsm.getUtility(geometry.interfaces.IGeometryFactory,
+...                       'Axis')
+
+Check we got the right thing.
+
+>>> util # doctest: +ELLIPSIS
+<geometry.axis.AxisFactory object at 0x...>
+

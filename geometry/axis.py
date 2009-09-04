@@ -40,3 +40,7 @@ class Axis(object):
         vertices.extend([-d,-d, 0, d,-d, 0, d, d, 0,-d, d, 0])
         for i in range (0,4): colors.extend([0,0,1,0.5])
         return glhelpers.glfloat_list(vertices),glhelpers.glfloat_list(colors)
+
+gsm = zope.component.getGlobalSiteManager()
+gsm.registerUtility(factory=AxisFactory, name='Axis')
+del gsm
