@@ -14,7 +14,7 @@ or orientation. We should end up with two tuples with all zeros.
 >>> import geometry.position
 >>> identity = geometry.position.Position()
 >>> identity.position
-((0.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+(Vector3(0.00, 0.00, 0.00), Vector3(0.00, 0.00, 0.00))
 
 Displacement
 ------------
@@ -22,27 +22,29 @@ Displacement
 Great. Now lets try creating a position with a displacement on the X
 axis:
 
->>> x_displacement = geometry.position.Position((1.0,0.0,0.0))
+>>> import geometry.euclid
+>>> Vector3 = geometry.euclid.Vector3
+>>> x_displacement = geometry.position.Position(Vector3(1.0,0.0,0.0))
 >>> x_displacement.position
-((1.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+(Vector3(1.00, 0.00, 0.00), Vector3(0.00, 0.00, 0.00))
 >>> x_displacement.displacement
-(1.0, 0.0, 0.0)
+Vector3(1.00, 0.00, 0.00)
 
 Good stuff. Now for a position with a y displacement.
 
->>> y_displacement = geometry.position.Position((0.0,1.0,0.0))
+>>> y_displacement = geometry.position.Position(Vector3(0.0,1.0,0.0))
 >>> y_displacement.displacement
-(0.0, 1.0, 0.0)
+Vector3(0.00, 1.00, 0.00)
 
-Absolute position
------------------
+Absolute position (translation)
+-------------------------------
 
 We should be able to take a position, (a relative measure,) and combine
 it with an origin to get an absolute position.
 
 >>> absolute_position = x_displacement.absolute_position(y_displacement)
 >>> absolute_position.displacement
-(1.0, 1.0, 0.0)
+Vector3(1.00, 1.00, 0.00)
 
 It looks like it has resolved that correctly. Let's check it works out
 for another example.
@@ -53,6 +55,34 @@ for another example.
 >>> leftleft = x.absolute_position(left)
 >>> leftleftup = y.absolute_position(leftleft)
 >>> leftleftup.displacement
-(2.0, 1.0, 0.0)
+Vector3(2.00, 1.00, 0.00)
 
+Absolute position (rotation basic)
+----------------------------------
+
+Here we test the euler rotation and the absolute_position method. We are
+trying to walk in a square, taking one step forward and turning 90
+degrees at each step. After four steps, we should arrive at the origin.
+
+>>> import math
+>>> step = geometry.position.Position(Vector3(1.0,0.0,0.0),
+...                                   Vector3(math.pi/2.0,0.0,0.0))
+>>> step_one = step.absolute_position(identity)
+>>> step_two = step.absolute_position(step_one)
+>>> step_three = step.absolute_position(step_two)
+>>> step_four = step.absolute_position(step_three)
+>>> step_two.position # doctest: +ELLIPSIS
+(Vector3(1.00, 0.00, -1.00), Vector3(..., 0.00, 0.00))
+>>> step_three.position # doctest: +ELLIPSIS
+(Vector3(0.00, 0.00, -1.00), Vector3(..., 0.00, 0.00))
+
+Final rotation should be close to 2 Pi
+
+>>> step_four.rotation
+Vector3(6.28, 0.00, 0.00)
+
+Final displacement from origin should be close to 0
+
+>>> step_four.displacement.magnitude() < 0.000001
+True
 
