@@ -18,7 +18,7 @@ class SceneRoot(object):
     def __init__(self):
         axis_factory = geometry.axis.AxisFactory()
         axis = axis_factory.create()
-        self.nodes.append(node.basic.ObjectNode(axis))
+        self.nodes.append(node.basic.BasicObjectNode(axis))
 
         self.cam=scene.camera.Camera()
 

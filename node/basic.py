@@ -21,7 +21,7 @@ class TestingNode(object):
         glEnd()
 
 
-class ObjectNode(object):
+class BasicObjectNode(object):
     zope.interface.implements(node.interfaces.IDrawnNode)
     object_to_draw = None
 

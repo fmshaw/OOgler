@@ -35,9 +35,9 @@ We create a dummy object to draw:
 
 Now we create an object node with the dummy
 
->>> object_node = node.basic.ObjectNode(DummyObjectToDraw())
+>>> object_node = node.basic.BasicObjectNode(DummyObjectToDraw())
 >>> object_node # doctest: +ELLIPSIS
-<node.basic.ObjectNode object at 0x...>
+<node.basic.BasicObjectNode object at 0x...>
 
 Great and to make sure our drawer logic is working:
 

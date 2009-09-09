@@ -1,0 +1,58 @@
+Position classes
+================
+
+Positions in space are represented using these classes. The two major
+factors are displacement from the origin of the position and the
+rotational orientation.
+
+Identity position
+-----------------
+
+The identity position is a position that doesn't change the displacement
+or orientation. We should end up with two tuples with all zeros.
+
+>>> import geometry.position
+>>> identity = geometry.position.Position()
+>>> identity.position
+((0.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+
+Displacement
+------------
+
+Great. Now lets try creating a position with a displacement on the X
+axis:
+
+>>> x_displacement = geometry.position.Position((1.0,0.0,0.0))
+>>> x_displacement.position
+((1.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+>>> x_displacement.displacement
+(1.0, 0.0, 0.0)
+
+Good stuff. Now for a position with a y displacement.
+
+>>> y_displacement = geometry.position.Position((0.0,1.0,0.0))
+>>> y_displacement.displacement
+(0.0, 1.0, 0.0)
+
+Absolute position
+-----------------
+
+We should be able to take a position, (a relative measure,) and combine
+it with an origin to get an absolute position.
+
+>>> absolute_position = x_displacement.absolute_position(y_displacement)
+>>> absolute_position.displacement
+(1.0, 1.0, 0.0)
+
+It looks like it has resolved that correctly. Let's check it works out
+for another example.
+
+>>> x = x_displacement
+>>> y = y_displacement
+>>> left = x.absolute_position(identity)
+>>> leftleft = x.absolute_position(left)
+>>> leftleftup = y.absolute_position(leftleft)
+>>> leftleftup.displacement
+(2.0, 1.0, 0.0)
+
+
