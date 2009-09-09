@@ -1,2 +1,2 @@
 #!/bin/bash
-python -m doctest tests.py
+python -m doctest tests.py $@
