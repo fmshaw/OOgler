@@ -1,0 +1,54 @@
+Simple nodes
+============
+
+Simple nodes have two big differences from the basic node. Simple nodes
+have descendants and relative positioning information.
+
+We should be able to import this modules
+
+>>> import node.simple
+
+Testing simple node
+-------------------
+
+We should be able to create an instance
+
+>>> import node.simple
+>>> simple = node.simple.SimpleObjectNode()
+>>> simple # doctest: +ELLIPSIS
+<node.simple.SimpleObjectNode object at 0x...>
+
+This instance should have a position. (Displacement from relative origin
+and orientation.)
+
+>>> simple.position # doctest: +ELLIPSIS
+<geometry.position.Position object at 0x...>
+
+It should be created without any children.
+
+>>> len(simple.children)
+0
+
+We should be able to add a child.
+
+>>> simple_child = node.simple.SimpleOjectNode()
+>>> simple.add_child(simple_child)
+>>> len(simple.children)
+1
+
+We can also get a list of children
+
+>>> simple.children # doctest: +ELLIPSIS
+[<node.simple.SimpleObjectNode object at 0x...>]
+
+There is also a mechanism to add named children.
+
+>>> simple_named_child = node.simple.SimpleObjectNode()
+>>> simple.add_named_child("Named child", simple_named_child)
+>>> len(simple.children)
+2
+>>> for k,v in simple.named_children.items():
+...     print "%s %s" # doctest: +ELLIPSIS
+Named child <node.simple.SimpleObjectNode object at 0x...>
+
+
